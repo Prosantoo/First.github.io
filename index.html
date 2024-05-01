@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User-Friendly Template</title>
+    <title>E-Commerce Website</title>
     <style>
+        /* CSS styles for your e-commerce website */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
         header {
             background-color: #333;
             color: #fff;
             padding: 20px;
+            text-align: center;
         }
 
         nav ul {
             list-style-type: none;
             padding: 0;
+            text-align: center;
         }
 
         nav ul li {
@@ -33,11 +37,20 @@
         }
 
         main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
             padding: 20px;
         }
 
-        section {
+        .product {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 250px;
             margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
         }
 
         footer {
@@ -45,48 +58,60 @@
             color: #fff;
             text-align: center;
             padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome to Our Website</h1>
+    <h1>My E-Commerce Store</h1>
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Cart</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 </header>
 
-<main>
-    <section>
-        <h2>Featured Content</h2>
-        <p>This is where you can showcase your featured content.</p>
-    </section>
-
-    <section>
-        <h2>Dropdown Menu</h2>
-        <select id="dropdown">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select>
-    </section>
+<main id="product-list">
+    <!-- Product listing will be dynamically generated here -->
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Company. All rights reserved.</p>
+    <p>&copy; 2024 My E-Commerce Store. All rights reserved.</p>
 </footer>
 
 <script>
-    document.getElementById('dropdown').addEventListener('change', function() {
-        var selectedOption = this.value;
-        alert('You selected: ' + selectedOption);
+    // JavaScript for fetching products and handling user interactions
+    const products = [
+        { id: 1, name: 'Product 1', price: 10 },
+        { id: 2, name: 'Product 2', price: 20 },
+        { id: 3, name: 'Product 3', price: 30 },
+        // Add more products here
+    ];
+
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+        productDiv.innerHTML = `
+            <h3>${product.name}</h3>
+            <p>$${product.price}</p>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        productList.appendChild(productDiv);
     });
+
+    function addToCart(productId) {
+        // Logic to add the product to the cart
+        console.log(`Added product with ID ${productId} to cart.`);
+    }
 </script>
 
 </body>
